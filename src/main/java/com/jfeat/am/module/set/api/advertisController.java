@@ -10,7 +10,7 @@ public class advertisController {
     @RequestMapping( "/searchAllAdvertis")
     public void searchAllAdvertis ()  {
         try {
-
+            System.out.println( "收到" );
         } catch ( Exception e ) {
 
         }
