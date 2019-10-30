@@ -1,12 +1,12 @@
 package com.jfeat;
 
 import com.jfeat.crud.core.properties.AmProperties;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
 import javax.annotation.Resource;
 /**
  * SpringBoot CG Test Application
@@ -14,6 +14,7 @@ import javax.annotation.Resource;
  * @author Admin
  * @Date 2017/5/21 12:06
  */
+@MapperScan( "com.jfeat.am.module.set.mapper" )
 @SpringBootApplication
 @EnableSwagger2
 public class AmApplication extends WebMvcConfigurerAdapter {

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfeat.am.module.set.mapper.advertisMaterial.BrandMapper">
+    <select id="searchAdvertisBrand" resultType="com.jfeat.am.module.set.model.AdvertisBrand">
+        SELECT
+          `advertisingName` ,
+          `id` ,
+          `format` ,
+          `categoryId` ,
+          case when iftranscoding &gt;= 1 then "已转码"
+          else "未转码"
+          end iftranscoding
+        FROM
+          `advertisBrand`
+    </select>
+</mapper>

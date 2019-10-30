@@ -38,7 +38,7 @@ spring:
 
 ###################  mybatis-plus配置  ###################
 mybatis-plus:
-  mapper-locations: classpath*:com/jfeat/**/mapping/*.xml , classpath*:mapper/*.xml
+  mapper-locations: classpath*:com/jfeat/**/mapping/*.xml , classpath*:mapper/*/*.xml
   typeAliasesPackage: com.jfeat.**.model
   global-config:
     id-type: 2  #0:数据库ID自增   1:用户输入id   2:全局唯一id(IdWorker)   3:全局唯一ID(uuid)  4: 该类型为未设置主键类型(none)
@@ -67,7 +67,7 @@ logging:
 spring:
   profiles: dev
   datasource:
-      url: jdbc:mysql://120.79.49.72/test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+      url: jdbc:mysql://120.79.49.72/feng_test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
       username: root
       password: root
       filters: log4j,wall,mergeStat
