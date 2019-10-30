@@ -13,4 +13,21 @@
         FROM
           `advertisBrand`
     </select>
+    <select id="addBrand" parameterType="com.jfeat.am.module.set.model.AdvertisBrand">
+        INSERT INTO  `advertisBrand` (
+          `advertisingName`,
+          `id`,
+          `format`,
+          `categoryId`,
+          `iftranscoding`
+        )
+        VALUES
+        (
+            #{advertisingName} ,
+            #{id} ,
+            #{format} ,
+            #{categoryId} ,
+            "0"
+        )
+    </select>
 </mapper>

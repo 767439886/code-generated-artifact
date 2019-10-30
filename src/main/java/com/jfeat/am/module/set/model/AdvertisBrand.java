@@ -11,6 +11,16 @@ public class AdvertisBrand {
     private String area ;
     //  表示该是否已经转码了
     private String iftranscoding ;
+    //  记录的区域id
+    private String categoryId ;
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
 
     public String getIftranscoding() {
         return iftranscoding;

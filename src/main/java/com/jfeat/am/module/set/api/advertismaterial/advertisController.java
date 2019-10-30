@@ -1,22 +1,22 @@
-package com.jfeat.am.module.set.api.advertis;
+package com.jfeat.am.module.set.api.advertismaterial;
 
 import com.jfeat.am.module.set.common.Result;
 import com.jfeat.am.module.set.model.AdvertisBrand;
 import com.jfeat.am.module.set.services.advertisMaterial.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping( "/advertis")
+@RequestMapping( "/advertismaterial")
 public class advertisController {
 
     @Autowired
     private BrandService brandService;
 
-    @RequestMapping( "/searchAllAdvertis")
+    //  查看出所有的广告模板信息
+    @GetMapping( "/brandManager")
     public Result searchAllAdvertis ()  {
         try {
             List<AdvertisBrand> advertisBrands = brandService.searchAllBrand() ;
@@ -27,8 +27,8 @@ public class advertisController {
         }
     }
 
-    @RequestMapping( "/test")
-    public void test () {
-        System.out.println( "已经输出了" ) ;
-    }
+    //  增加广告的模板信息
+//    public Result addAdvertis( @RequestBody AdvertisBrand advertisBrand ) {
+//
+//    }
 }

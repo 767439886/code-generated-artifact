@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfeat.am.module.set.mapper.advertisMaterial.AreaMapper">
+    <select id="SearchArea" parameterType="String" resultType="com.jfeat.am.module.set.model.Area">
+        SELECT
+          `id`,
+          `cityName`,
+          `parentId`
+        FROM
+          `city`
+        <where>
+            <if test="value != null and value !='' ">
+                id = #{value}
+            </if>
+        </where>
+    </select>
+    <select id="SearchParentCity" resultType="com.jfeat.am.module.set.model.Area">
+        SELECT
+          `id`,
+          `cityName`,
+          `parentId`
+        FROM
+          `city`
+        where
+          `parentId` = "0"
+    </select>
+</mapper>
