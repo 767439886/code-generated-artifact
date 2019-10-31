@@ -24,4 +24,21 @@
         where
           `parentId` = "0"
     </select>
+    <select id="SearchCity" parameterType="Map" resultType="com.jfeat.am.module.set.model.Area">
+        SELECT
+          `id`,
+          `cityName`,
+          `parentId`
+        FROM
+          `city`
+        <where>
+            <if test=" city != '' and city != nll ">
+                #{city} = `parentId`
+            </if>
+            <if test=" area != '' and area != null ">
+                `id` = #{area}
+            </if>
+        </where>
+    </select>
+
 </mapper>

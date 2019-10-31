@@ -22,7 +22,7 @@ public class areaController {
     public Result searchArea( ) {
         try {
             //  返回城市区域
-            List<Area> areas = areaService.searchParentArea() ;
+            List<Area> areas = areaService.searchParentArea();
             return new Result( areas , "返回成功" , 200 ) ;
         } catch ( Exception e ) {
             e.printStackTrace();

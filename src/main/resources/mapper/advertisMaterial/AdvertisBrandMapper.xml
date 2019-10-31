@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfeat.am.module.set.mapper.advertisMaterial.AdvertisBrandMapper">
+    <select id="searchAdvertisBrand" parameterType="String" resultType="com.jfeat.am.module.set.model.AdvertisBrand">
+        SELECT
+          `advertisingName` ,
+          `id` ,
+          `format` ,
+          `categoryId` ,
+          case when iftranscoding &gt;= 1 then "已转码"
+          else "未转码"
+          end iftranscoding
+        FROM
+          `advertisBrand`
+        <where>
+            <if test=" value != null and value != '' ">
+                #{value} = id ;
+            </if>
+        </where>
+    </select>
+    <insert id="addBrand" parameterType="com.jfeat.am.module.set.model.AdvertisBrand">
+        INSERT INTO  `advertisBrand` (
+          `advertisingName`,
+          `format`,
+          `categoryId`,
+          `iftranscoding`
+        )
+        VALUES
+        (
+            #{advertisingName} ,
+            #{format} ,
+            #{categoryId} ,
+            "0"
+        )
+    </insert>
+    <insert id="addBrandAndId" parameterType="com.jfeat.am.module.set.model.AdvertisBrand">
+        INSERT INTO  `advertisBrand` (
+          `id` ,
+          `advertisingName`,
+          `format`,
+          `categoryId`,
+          `iftranscoding`
+        )
+        VALUES
+        (
+            #{id} ,
+            #{advertisingName} ,
+            #{format} ,
+            #{categoryId} ,
+            #{iftranscoding}
+        )
+    </insert>
+    <delete id="deleteBrandAdvertis" parameterType="String">
+        DELETE
+        FROM
+          `advertisBrand`
+        where
+          `id` = #{value}
+    </delete>
+</mapper>
