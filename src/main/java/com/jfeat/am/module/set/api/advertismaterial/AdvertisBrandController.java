@@ -74,4 +74,6 @@ public class AdvertisBrandController {
             return new Result( "增加数据失败" , 500 ) ;
         }
     }
+
+
 }
