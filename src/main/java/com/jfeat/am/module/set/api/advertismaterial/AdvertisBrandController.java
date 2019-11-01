@@ -2,7 +2,7 @@ package com.jfeat.am.module.set.api.advertismaterial;
 
 import com.jfeat.am.module.set.common.Result;
 import com.jfeat.am.module.set.model.AdvertisBrand;
-import com.jfeat.am.module.set.services.advertisMaterial.AdvertisTemplateService;
+import com.jfeat.am.module.set.services.advertisMaterial.AdvertisBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -13,13 +13,13 @@ import java.util.Map;
 public class AdvertisBrandController {
 
     @Autowired
-    private AdvertisTemplateService advertisTemplateService;
+    private AdvertisBrandService advertisBrandService;
 
     //  查看出所有的广告模板信息和搜索出相应的广告
     @GetMapping( "/brandManager")
     public Result searchAllAdvertis ( String search )  {
         try {
-            List<AdvertisBrand> advertisBrands = advertisTemplateService.searchAllBrand( search ) ;
+            List<AdvertisBrand> advertisBrands = advertisBrandService.searchAllBrand( search ) ;
             return new Result( advertisBrands , "返回的数据成功" , 200 ) ;
         } catch ( Exception e ) {
             e.printStackTrace();
@@ -31,7 +31,7 @@ public class AdvertisBrandController {
     @PostMapping( "/brandManager" )
     public Result addAdvertis(@RequestBody AdvertisBrand addBrand ) {
         try {
-            advertisTemplateService.addBrandAdvertis( addBrand ); ;
+            advertisBrandService.addBrandAdvertis( addBrand ); ;
             return new Result( "增加数据成功" , 200 ) ;
         } catch ( Exception e  ) {
             e.printStackTrace();
@@ -43,7 +43,7 @@ public class AdvertisBrandController {
     @GetMapping( "/brandManager/{id}")
     public Result updateAdvertis ( @PathVariable String id ) {
         try {
-            Map<String, Object> advertisBrand = advertisTemplateService.showBrandAdvertis(id);
+            Map<String, Object> advertisBrand = advertisBrandService.showBrandAdvertis(id);
             return new Result(  advertisBrand , "增加数据成功" , 200 ) ;
         } catch ( Exception e ) {
             e.printStackTrace();
@@ -55,7 +55,7 @@ public class AdvertisBrandController {
     @PutMapping( "/brandManager/{id}" )
     public Result saveAdvertis (  @PathVariable String id , @RequestBody Map<String,String> brandAdvertis ) {
         try {
-            advertisTemplateService.updateBrandAdvertis( brandAdvertis );
+            advertisBrandService.updateBrandAdvertis( brandAdvertis );
             return new Result(  "增加数据成功" , 200 ) ;
         } catch ( Exception e ) {
             e.printStackTrace();
@@ -67,7 +67,7 @@ public class AdvertisBrandController {
     @DeleteMapping( "/brandManager/{id}" )
     public Result deleteAdvertis ( @PathVariable String id ) {
         try {
-            advertisTemplateService.deleteBrandAdvertis( id ) ;
+            advertisBrandService.deleteBrandAdvertis( id ) ;
             return new Result(  "增加数据成功" , 200 ) ;
         } catch ( Exception e ) {
             e.printStackTrace();
