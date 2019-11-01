@@ -10,5 +10,5 @@ public interface AdvertisTemplateMapper {
     //  根据关键字增加模板
     public void insertuserTemplate( Showtemplate showtemplate ) ;
     //  根据id删除模板
-    public void deleteTemplate( String id ) ;
+    public void deleteTemplateAdvertis( String id ) ;
 }

@@ -39,8 +39,9 @@ public class teleplateController {
 
     //  删除广告模板信息
     @DeleteMapping( "/endTemplate/{id}" )
-    public Result deleteTemplate (@RequestBody String id ) {
+    public Result deleteTemplate (@PathVariable String id ) {
         try {
+            advertisTemplateService.deleteTemplate(id) ;
             return new Result( "删除数据成功" , 200 ) ;
         } catch ( Exception e) {
             return new Result( "删除数据失败" , 500 ) ;
@@ -58,11 +59,12 @@ public class teleplateController {
         }
     }
 
+
     //  把修改后的数据输入数据库
-    @PutMapping( "/brandManager/{id}" )
-    public Result saveAdvertis (  @PathVariable String id , @RequestBody AdvertisTemplateService advertisTemplateService) {
+    @PutMapping( "/endTemplate/{id}" )
+    public Result saveAdvertis (  @PathVariable String id , @RequestBody Showtemplate showtemplate ) {
         try {
-            advertisTemplateService.updateTemplate( ) ;
+            advertisTemplateService.updateTemplate( showtemplate ) ;
             return new Result(  "增加数据成功" , 200 ) ;
         } catch ( Exception e ) {
             e.printStackTrace();

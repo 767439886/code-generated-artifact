@@ -37,7 +37,7 @@
     <delete id="deleteTemplateAdvertis" parameterType="String">
         DELETE
         FROM
-          `advertisBrand`
+          `showTemplate`
         where
           `id` = #{value}
     </delete>

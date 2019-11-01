@@ -36,7 +36,7 @@ public class AdvertisTemplateService {
     //  主要用于删除模板
     public void deleteTemplate( String id ) {
         //  使用于删除模板
-        advertisTemplateMapper.deleteTemplate(id);
+        advertisTemplateMapper.deleteTemplateAdvertis(id);
     }
 
     //  修改模板
