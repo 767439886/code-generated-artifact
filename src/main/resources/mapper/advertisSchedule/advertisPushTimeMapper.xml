@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jfeat.am.module.set.mapper.advertisSchedule.advertisPushTimeMapper">
+<mapper namespace="com.jfeat.am.module.set.mapper.advertisSchedule.AdvertisPushTimeMapper">
     <select id="searchPushtimeAdvertis" parameterType="Map" resultType="com.jfeat.am.module.set.model.Pushtimeadvertis">
         SELECT
           `id`,
@@ -13,7 +13,7 @@
           `pushTimeAdvertis`
         <where>
             <if test=" keyword != null and keyword != '' " >
-                pushAdvertisName = #{keyword} or
+                pushAdvertisName like CONCAT( "%" , keyword , "%" ) or
                 startTime = #{keyword} or
                 playTime = #{keyword} or
                 endTime = #{keyword}
