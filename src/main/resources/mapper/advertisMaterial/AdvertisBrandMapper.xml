@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jfeat.am.module.set.mapper.advertisMaterial.AdvertisBrandMapper">
-    <select id="searchAdvertisBrand" parameterType="String" resultType="com.jfeat.am.module.set.model.AdvertisBrand">
+    <select id="searchAdvertisBrand" parameterType="Map" resultType="com.jfeat.am.module.set.model.AdvertisBrand">
         SELECT
           `advertisingName` ,
           `id` ,
@@ -13,8 +13,11 @@
         FROM
           `advertisBrand`
         <where>
-            <if test=" value != null and value != '' ">
-                #{value} = id ;
+            <if test=" id != null and id != '' ">
+                #{id} = id ;
+            </if>
+            <if test=" search != null and search != '' " >
+                `advertisingName` like  #{search}
             </if>
         </where>
     </select>

@@ -15,11 +15,11 @@ public class AdvertisBrandController {
     @Autowired
     private AdvertisTemplateService advertisTemplateService;
 
-    //  查看出所有的广告模板信息
+    //  查看出所有的广告模板信息和搜索出相应的广告
     @GetMapping( "/brandManager")
-    public Result searchAllAdvertis ()  {
+    public Result searchAllAdvertis ( String search )  {
         try {
-            List<AdvertisBrand> advertisBrands = advertisTemplateService.searchAllBrand() ;
+            List<AdvertisBrand> advertisBrands = advertisTemplateService.searchAllBrand( search ) ;
             return new Result( advertisBrands , "返回的数据成功" , 200 ) ;
         } catch ( Exception e ) {
             e.printStackTrace();
@@ -74,6 +74,5 @@ public class AdvertisBrandController {
             return new Result( "增加数据失败" , 500 ) ;
         }
     }
-
 
 }
