@@ -18,6 +18,7 @@ public class AdvertisPushTimeController {
     public Result SearchAdvertisPushTime ( String search ) {
         try{
             //  发送搜索条件
+            System.out.println("收到");
             advertisPushTimeService.searchPushTimeAdvertis( search ) ;
             return new Result( "返回的数据成功" , 200 ) ;
         }catch ( Exception e ) {
