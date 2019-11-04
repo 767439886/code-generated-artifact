@@ -9,11 +9,12 @@ public class Pushtimeadvertis implements java.io.Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private String pushadvertisname;
-	private String starttime;
-	private String endtime;
-	private String playtime;
-	private Integer uid;
+	private String pushAdvertisName;
+	private String startTime;
+	private String endTime;
+	private String playTime;
+	private String uidName ;
+	private String uid ;
 
 	/** setter and getter method */
 	public void setId(Integer id){
@@ -22,35 +23,40 @@ public class Pushtimeadvertis implements java.io.Serializable{
 	public Integer getId(){
 		return this.id;
 	}
-	public void setPushadvertisname(String pushadvertisname){
-		this.pushadvertisname = pushadvertisname;
-	}
-	public String getPushadvertisname(){
-		return this.pushadvertisname;
-	}
-	public void setStarttime(String starttime){
-		this.starttime = starttime;
-	}
-	public String getStarttime(){
-		return this.starttime;
-	}
-	public void setEndtime(String endtime){
-		this.endtime = endtime;
-	}
-	public String getEndtime(){
-		return this.endtime;
-	}
-	public void setPlaytime(String playtime){
-		this.playtime = playtime;
-	}
-	public String getPlaytime(){
-		return this.playtime;
-	}
-	public void setUid(Integer uid){
-		this.uid = uid;
-	}
-	public Integer getUid(){
-		return this.uid;
-	}
-
+    public String getPushAdvertisName() {
+        return pushAdvertisName;
+    }
+    public void setPushAdvertisName(String pushAdvertisName) {
+        this.pushAdvertisName = pushAdvertisName;
+    }
+    public String getStartTime() {
+        return startTime;
+    }
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+    public String getEndTime() {
+        return endTime;
+    }
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+    public String getPlayTime() {
+        return playTime;
+    }
+    public void setPlayTime(String playTime) {
+        this.playTime = playTime;
+    }
+    public String getUidName() {
+        return uidName;
+    }
+    public void setUidName(String uidName) {
+        this.uidName = uidName;
+    }
+    public String getUid() {
+        return uid;
+    }
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 }

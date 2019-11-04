@@ -3,14 +3,15 @@
 <mapper namespace="com.jfeat.am.module.set.mapper.advertisSchedule.AdvertisPushTimeMapper">
     <select id="searchPushtimeAdvertis" parameterType="Map" resultType="com.jfeat.am.module.set.model.Pushtimeadvertis">
         SELECT
-          `id`,
+          p.`id`,
           `pushAdvertisName`,
           `startTime`,
           `endTime`,
           `playTime`,
-          `uid`
+          u.name uidName
         FROM
-          `pushTimeAdvertis`
+          `pushTimeAdvertis` AS  p
+        LEFT JOIN `user` AS u ON p.uid = u.id
         <where>
             <if test=" keyword != null and keyword != '' " >
                 pushAdvertisName like CONCAT( "%" , keyword , "%" ) or
@@ -20,6 +21,9 @@
             </if>
             <if test=" uid != null and uid != '' ">
                 uid = #{uid}
+            </if>
+            <if test=" id != null and id != '' ">
+                p.id = #{id}
             </if>
         </where>
     </select>
@@ -46,21 +50,27 @@
           `pushTimeAdvertis`
         WHERE `id` = #{id} ;
     </delete>
-    <update id="updatePushtimeAdvertis" parameterType="String">
+    <update id="updatePushtimeAdvertis" parameterType="Map">
         UPDATE
           `pushTimeAdvertis`
-        SET
-          <where>
-              <if test="pushAdvertisName != null and pushAdvertisName != '' ">
-                  `pushAdvertisName` = #{pushAdvertisName} ,
-              </if>
-              <if test="startTime != null and startTime != '' ">
-                  startTime = #{} ,
-              </if>
-          </where>
-          `startTime` = 'startTime',
-          `endTime` = 'endTime',
-          `playTime` = 'playTime',
-          `id` = 'id'
+        <set>
+           <if test="pushAdvertisName != null and pushAdvertisName != '' ">
+               `pushAdvertisName` = #{pushAdvertisName} ,
+           </if>
+           <if test="startTime != null and startTime != '' ">
+                startTime = #{startTime} ,
+           </if>
+           <if test="endTime != null and endTime != '' ">
+                endTime = #{endTime} ,
+           </if>
+           <if test="playTime != null and playTime != '' " >
+                playTime = #{playTime}
+           </if>
+        </set>
+         <where>
+             <if test=" id != null and id != '' ">
+                 `id` = #{id}
+             </if>
+         </where>
     </update>
 </mapper>
