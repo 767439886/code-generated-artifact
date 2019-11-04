@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping( "/logMessage/history")
+@RequestMapping( "/logMessage/nowLog")
 public class NowPlay {
 
     @Autowired
@@ -24,7 +24,7 @@ public class NowPlay {
         try{
             //  按照播放的时间进行排序查询
             List<Pushtimeadvertis> pushtimeadvertis = historyPlayAndNowPlayService.searchNowPlayAdvertis() ;
-            return new Result(  pushtimeadvertis , "返回数据成功" , 500 ) ;
+            return new Result(  pushtimeadvertis , "返回数据成功" , 200 ) ;
         }catch ( Exception e ) {
             e.printStackTrace();
             return new Result( "返回数据失败" , 500 ) ;

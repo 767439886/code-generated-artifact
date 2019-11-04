@@ -7,7 +7,7 @@ import java.util.List;
 public interface HistoryPlayAndNowPlay {
 
     //  搜索的正在推送的广告（注意要排序）
-    public List<Pushtimeadvertis> searchNowPlayAdvertis( ) ;
+    public List<Pushtimeadvertis> searchNowPlayAdvertis( String day ) ;
     //  搜索的历史推送的广告（注意要排序）
-    public List<Pushtimeadvertis> searchHistoryPlayAdvertis( ) ;
+    public List<Pushtimeadvertis> searchHistoryPlayAdvertis( String day ) ;
 }
