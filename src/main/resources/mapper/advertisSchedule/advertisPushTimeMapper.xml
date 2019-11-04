@@ -23,4 +23,44 @@
             </if>
         </where>
     </select>
+    <insert id="addPushtimeAdvertis" parameterType="com.jfeat.am.module.set.model.Pushtimeadvertis">
+        INSERT INTO `pushTimeAdvertis` (
+          `pushAdvertisName`,
+          `startTime`,
+          `endTime`,
+          `playTime`,
+          `uid`
+        )
+        VALUES
+        (
+          #{pushAdvertisName} ,
+          #{startTime} ,
+          #{endTime} ,
+          #{playTime} ,
+          #{uid}
+        ) ;
+    </insert>
+    <delete id="deletePushtimeAdvertis" parameterType="String">
+        DELETE
+        FROM
+          `pushTimeAdvertis`
+        WHERE `id` = #{id} ;
+    </delete>
+    <update id="updatePushtimeAdvertis" parameterType="String">
+        UPDATE
+          `pushTimeAdvertis`
+        SET
+          <where>
+              <if test="pushAdvertisName != null and pushAdvertisName != '' ">
+                  `pushAdvertisName` = #{pushAdvertisName} ,
+              </if>
+              <if test="startTime != null and startTime != '' ">
+                  startTime = #{} ,
+              </if>
+          </where>
+          `startTime` = 'startTime',
+          `endTime` = 'endTime',
+          `playTime` = 'playTime',
+          `id` = 'id'
+    </update>
 </mapper>

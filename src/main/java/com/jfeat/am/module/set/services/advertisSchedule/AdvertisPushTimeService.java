@@ -28,4 +28,8 @@ public class AdvertisPushTimeService {
         List<Pushtimeadvertis> pushtimeadvertis = advertisPushTimeMapper.searchPushtimeAdvertis(keywords);
         return pushtimeadvertis ;
     }
+
+    public void addPushTimeAdvertis ( Pushtimeadvertis pushtimeadvertis ) {
+
+    }
 }
