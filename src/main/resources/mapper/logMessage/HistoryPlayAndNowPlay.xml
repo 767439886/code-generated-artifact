@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfeat.am.module.set.mapper.logMessage.HistoryPlayAndNowPlay">
+    <select id="searchNowPlayAdvertis" resultType="com.jfeat.am.module.set.model.Pushtimeadvertis">
+        SELECT
+          `id`,
+          `pushAdvertisName`,
+          `startTime`,
+          `endTime`,
+          `playTime`,
+          `uid`
+        FROM
+          `pushTimeAdvertis`
+        <where>
+            <if test="day != null and day != '' ">
+                playTime &gt;= #{day}
+            </if>
+        </where>
+        ORDER BY playTime
+    </select>
+    <select id="searchHistoryPlayAdvertis" resultType="com.jfeat.am.module.set.model.Pushtimeadvertis">
+        SELECT
+        `id`,
+        `pushAdvertisName`,
+        `startTime`,
+        `endTime`,
+        `playTime`,
+        `uid`
+        FROM
+        `pushTimeAdvertis`
+        <where>
+            <if test="day != null and day != '' ">
+                playTime &lt; #{day}
+            </if>
+        </where>
+        ORDER BY playTime
+    </select>
+</mapper>
