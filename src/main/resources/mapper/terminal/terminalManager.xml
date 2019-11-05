@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfeat.am.module.set.mapper.terminal.TerminalManagerMapper">
+    <select id="searchTerminal" parameterType="String" resultType="com.jfeat.am.module.set.model.Terminalmanager">
+        SELECT
+          `id`,
+          `name`,
+          `model`,
+          `area`,
+          `updateTime`,
+          `interval`,
+          `resolution`,
+          case when `control` = 1 then "正常状态"
+          when `control` = 2 then "休眠"
+          else "唤醒"
+          end `control` ,
+          case when `updateState` = 1 then "计划时间"
+          else "立即更新"
+          end `updateState`
+        FROM
+          `terminalManager`
+        <where>
+            <if test="value != null and value != '' ">
+                id = #{value}
+            </if>
+        </where>
+    </select>
+    <insert id="addTeriminal" parameterType="Map">
+        INSERT INTO `feng_test`.`terminalManager` (
+          `name`,
+          `model`,
+          `area`,
+          `updateTime`,
+          `interval`,
+          `resolution`,
+          `control`,
+          `updateState`
+        )
+        VALUES
+        (
+            #{name},
+            #{model},
+            #{area},
+            #{updateTime},
+            #{interval},
+            #{resolution},
+            #{control},
+            #{updateState}
+        ) ;
+    </insert>
+    <delete id="deleteTerminal" parameterType="String" >
+        DELETE
+        FROM
+          `terminalManager`
+        where
+            `id` = #{value}
+    </delete>
+    <update id="updateTerminalManager" parameterType="com.jfeat.am.module.set.model.Terminalmanager">
+        UPDATE
+          `terminalManager`
+        <set>
+          <if test=" name != null and name != '' ">
+              `name` = #{name} ,
+          </if>
+          <if test=" model != null and model != '' ">
+              `model` = #{model} ,
+          </if>
+          <if test=" area != null and area != '' ">
+              `area` = #{area} ,
+          </if>
+          <if test=" updateTime != null and updateTime != '' ">
+              `updateTime` = #{updateTime} ,
+          </if>
+          <if test=" interval != null and interval != '' ">
+                `interval` = #{interval} ,
+          </if>
+          <if test=" resolution != null and resolution != '' ">
+                `resolution` = #{resolution} ,
+          </if>
+          <if test=" control != null and control != '' ">
+                `control` = #{control} ,
+          </if>
+          <if test=" updateState != null and updateState != '' ">
+                `updateState` = #{updateState} ,
+          </if>
+        </set>
+            WHERE `id` = #{id} ;
+    </update>
+</mapper>

@@ -12,11 +12,12 @@ public class Terminalmanager implements java.io.Serializable{
 	private String name;
 	private String model;
 	private String area;
-	private String updatetime;
+	private String city;
+	private String updateTime;
 	private Long interval;
 	private String resolution;
 	private String control;
-	private String updatestate;
+	private String updateState;
 
 	/** setter and getter method */
 	public void setId(Integer id){
@@ -43,13 +44,13 @@ public class Terminalmanager implements java.io.Serializable{
 	public String getArea(){
 		return this.area;
 	}
-	public void setUpdatetime(String updatetime){
-		this.updatetime = updatetime;
-	}
-	public String getUpdatetime(){
-		return this.updatetime;
-	}
-	public void setInterval(Long interval){
+    public String getUpdateTime() {
+        return updateTime;
+    }
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
+    }
+    public void setInterval(Long interval){
 		this.interval = interval;
 	}
 	public Long getInterval(){
@@ -67,11 +68,16 @@ public class Terminalmanager implements java.io.Serializable{
 	public String getControl(){
 		return this.control;
 	}
-	public void setUpdatestate(String updatestate){
-		this.updatestate = updatestate;
-	}
-	public String getUpdatestate(){
-		return this.updatestate;
-	}
-
+    public String getUpdateState() {
+        return updateState;
+    }
+    public void setUpdateState(String updateState) {
+        this.updateState = updateState;
+    }
+    public String getCity() {
+        return city;
+    }
+    public void setCity(String city) {
+        this.city = city;
+    }
 }

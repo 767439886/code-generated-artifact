@@ -51,6 +51,7 @@ public class AdvertisBrandController {
         }
     }
 
+
     //  把修改后的数据输入数据库
     @PutMapping( "/brandManager/{id}" )
     public Result saveAdvertis (  @PathVariable String id , @RequestBody Map<String,String> brandAdvertis ) {
@@ -62,6 +63,7 @@ public class AdvertisBrandController {
             return new Result( "增加数据失败" , 500 ) ;
         }
     }
+
 
     //  删除数据
     @DeleteMapping( "/brandManager/{id}" )
