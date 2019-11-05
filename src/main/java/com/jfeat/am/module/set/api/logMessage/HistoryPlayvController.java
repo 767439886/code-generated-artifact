@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping( "/logMessage/historyLog")
-public class HistoryPlay {
+public class HistoryPlayvController {
 
     @Autowired
     HistoryPlayAndNowPlayService historyPlayAndNowPlayService ;

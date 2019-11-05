@@ -3,7 +3,7 @@
 <mapper namespace="com.jfeat.am.module.set.mapper.advertisMaterial.AdvertisBrandMapper">
     <select id="searchAdvertisBrand" parameterType="Map" resultType="com.jfeat.am.module.set.model.AdvertisBrand">
         SELECT
-          `advertisingName` ,
+          `brandName` ,
           `id` ,
           `format` ,
           `categoryId` ,
@@ -23,7 +23,7 @@
     </select>
     <insert id="addBrand" parameterType="com.jfeat.am.module.set.model.AdvertisBrand">
         INSERT INTO  `advertisBrand` (
-          `advertisingName`,
+          `brandName`,
           `format`,
           `categoryId`,
           `iftranscoding`
@@ -39,7 +39,7 @@
     <insert id="addBrandAndId" parameterType="com.jfeat.am.module.set.model.AdvertisBrand">
         INSERT INTO  `advertisBrand` (
           `id` ,
-          `advertisingName`,
+          `brandName`,
           `format`,
           `categoryId`,
           `iftranscoding`

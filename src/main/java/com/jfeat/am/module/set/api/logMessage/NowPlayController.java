@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping( "/logMessage/nowLog")
-public class NowPlay {
+public class NowPlayController {
 
     @Autowired
     HistoryPlayAndNowPlayService historyPlayAndNowPlayService ;

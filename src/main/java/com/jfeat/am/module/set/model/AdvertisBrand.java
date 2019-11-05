@@ -3,7 +3,7 @@ package com.jfeat.am.module.set.model;
 public class AdvertisBrand {
 
     //  广告的标题和名字
-    private String advertisingName ;
+    private String brandName ;
     private int id ;
     //  所属的格式，此广告是属于哪个后缀名的
     private String format ;
@@ -31,11 +31,11 @@ public class AdvertisBrand {
     }
 
     public String getAdvertisingName() {
-        return advertisingName;
+        return brandName;
     }
 
     public void setAdvertisingName(String advertisingName) {
-        this.advertisingName = advertisingName;
+        this.brandName = advertisingName;
     }
 
     public int getId() {

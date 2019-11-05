@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfeat.am.module.set.mapper.terminal.PrograMakeMapper" >
+    <select id="SearchPrograMake" parameterType="String" resultType="com.jfeat.am.module.set.model.Programake">
+        SELECT
+          `id`,
+          `name`,
+          `playLength`,
+          `resolution`,
+          `upLoadFile`,
+          `area`
+        FROM
+          `prograMake`
+        <where>
+            <if test=" value != null and value != '' ">
+                `id` = #{value}
+            </if>
+        </where>
+    </select>
+    <insert id="addPrograMake" parameterType="com.jfeat.am.module.set.model.Programake" >
+        INSERT INTO `prograMake` (
+           `name`,
+           `playLength`,
+           `resolution`,
+           `upLoadFile`,
+           `area`
+        )
+        VALUES
+        (
+            #{name},
+            #{playLength},
+            #{resolution},
+            #{upLoadFile},
+            #{area}
+        ) ;
+    </insert>
+    <insert id="addPrograMakeAndId" parameterType="com.jfeat.am.module.set.model.Programake" >
+        INSERT INTO `prograMake` (
+           `id` ,
+           `name`,
+           `playLength`,
+           `resolution`,
+           `upLoadFile`,
+           `area`
+        )
+        VALUES
+        (
+            #{id} ,
+            #{name},
+            #{playLength},
+            #{resolution},
+            #{upLoadFile},
+            #{area}
+        ) ;
+    </insert>
+    <delete id="deletePrograMake" parameterType="String">
+        DELETE
+        FROM
+          `prograMake`
+        WHERE `id` = #{value} ;
+    </delete>
+</mapper>
