@@ -16,8 +16,9 @@ public class AdvertisTemplateService {
     private AdvertisTemplateMapper advertisTemplateMapper ;
 
     //  主要用于搜索模板
-    public List<Showtemplate> searchTemplate ( String keyword ) {
+    public List<Showtemplate> searchTemplate ( String keyword , String uid ) {
         Map<String, String> keywords = new HashMap<>();
+        keywords.put( "uid" ,  uid ) ;
         if ( keyword != null ) {
             keywords.put("keyword", "%" + keyword + "%" );
         }
@@ -27,8 +28,8 @@ public class AdvertisTemplateService {
 
     //  主要用于增加模板
     public void addTemplate( Showtemplate showtemplate ) {
-        // 暂时判断该showtemplate中的uid为0(做完用户登录再获取uid)
-        showtemplate.setUid(0) ;
+        // 暂时判断该showtemplate中的uid为1(做完用户登录再获取uid)
+        showtemplate.setUid(1) ;
         //  用于增加模板
         advertisTemplateMapper.insertuserTemplate( showtemplate ) ;
     }

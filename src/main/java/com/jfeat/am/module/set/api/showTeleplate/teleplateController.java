@@ -15,10 +15,10 @@ public class teleplateController {
     private AdvertisTemplateService advertisTemplateService;
 
     //  模板的数据搜索成功
-    @GetMapping( "/endTemplate" )
+    @GetMapping( "/endTelemplate" )
     public Result searchTemplate ( String search ) {
         try {
-            List<Showtemplate> showtemplates = advertisTemplateService.searchTemplate(search);
+            List<Showtemplate> showtemplates = advertisTemplateService.searchTemplate(search , "1");
             return new Result( showtemplates , "返回的数据成功" , 200 ) ;
         } catch ( Exception e ) {
             return new Result( "返回数据失败" , 500 ) ;
@@ -26,7 +26,7 @@ public class teleplateController {
     }
 
     //  增加广告的模板信息
-    @PostMapping( "/endTemplate")
+    @PostMapping( "/endTelemplate")
     public Result addTemplate (@RequestBody Showtemplate showtemplate ) {
         try {
             advertisTemplateService.addTemplate( showtemplate ) ;
@@ -38,7 +38,7 @@ public class teleplateController {
     }
 
     //  删除广告模板信息
-    @DeleteMapping( "/endTemplate/{id}" )
+    @DeleteMapping( "/endTelemplate/{id}" )
     public Result deleteTemplate (@PathVariable String id ) {
         try {
             advertisTemplateService.deleteTemplate(id) ;
@@ -49,7 +49,7 @@ public class teleplateController {
     }
 
     //  返回模板的属性
-    @GetMapping ( "/endTemplate/{id}" )
+    @GetMapping ( "/endTelemplate/{id}" )
     public Result showTemplate (@PathVariable String id ) {
         try {
             Showtemplate showtemplate = advertisTemplateService.showTemplate(id) ;
@@ -61,7 +61,7 @@ public class teleplateController {
 
 
     //  把修改后的数据输入数据库
-    @PutMapping( "/endTemplate/{id}" )
+    @PutMapping( "/endTelemplate/{id}" )
     public Result saveAdvertis (  @PathVariable String id , @RequestBody Showtemplate showtemplate ) {
         try {
             advertisTemplateService.updateTemplate( showtemplate ) ;

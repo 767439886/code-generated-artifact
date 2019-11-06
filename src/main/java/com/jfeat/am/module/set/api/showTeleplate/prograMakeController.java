@@ -1,10 +1,11 @@
-package com.jfeat.am.module.set.api.teriminal;
+package com.jfeat.am.module.set.api.showTeleplate;
 
 import com.jfeat.am.module.set.common.Result;
 import com.jfeat.am.module.set.model.Programake;
 import com.jfeat.am.module.set.services.showTemplate.PrograMakeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController

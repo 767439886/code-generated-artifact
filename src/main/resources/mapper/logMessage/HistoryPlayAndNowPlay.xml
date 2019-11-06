@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jfeat.am.module.set.mapper.logMessage.HistoryPlayAndNowPlay">
-    <select id="searchNowPlayAdvertis" parameterType="String" resultType="com.jfeat.am.module.set.model.Pushtimeadvertis">
+    <select id="searchNowPlayAdvertis" parameterType="String" resultType="com.jfeat.am.module.set.model.AdvertisPlayTime">
         SELECT
-          `id`,
-          `pushAdvertisName`,
-          `startTime`,
-          `endTime`,
-          `playTime`,
-          `uid`
+            ad.`id`,
+            `playTime`,
+            pro.`name` pushAdvertisName
         FROM
-          `pushTimeAdvertis`
+            `advertisPlayTime` ad
+        LEFT JOIN `pushTimeAdvertis` AS p ON p.id = ad.`pushTimeAdvertisId`
+        LEFT JOIN `prograMake` AS pro ON pro.id = p.`pushAdvertisId`
         <where>
             <if test="value != null and value != '' ">
                 playTime &gt;= #{day}
@@ -18,16 +17,15 @@
         </where>
         ORDER BY playTime
     </select>
-    <select id="searchHistoryPlayAdvertis" parameterType="String" resultType="com.jfeat.am.module.set.model.Pushtimeadvertis">
+    <select id="searchHistoryPlayAdvertis" parameterType="String" resultType="com.jfeat.am.module.set.model.AdvertisPlayTime">
         SELECT
-        `id`,
-        `pushAdvertisName`,
-        `startTime`,
-        `endTime`,
-        `playTime`,
-        `uid`
+            ad.`id`,
+            `playTime`,
+            pro.`name` pushAdvertisName
         FROM
-        `pushTimeAdvertis`
+        `advertisPlayTime` ad
+        LEFT JOIN `pushTimeAdvertis` AS p ON p.id = ad.`pushTimeAdvertisId`
+        LEFT JOIN `prograMake` AS pro ON pro.id = p.`pushAdvertisId`
         <where>
             <if test="value != null and value != '' ">
                 playTime &lt; #{day}

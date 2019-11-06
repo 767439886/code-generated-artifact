@@ -1,6 +1,7 @@
 package com.jfeat.am.module.set.api.logMessage;
 
 import com.jfeat.am.module.set.common.Result;
+import com.jfeat.am.module.set.model.AdvertisPlayTime;
 import com.jfeat.am.module.set.model.Pushtimeadvertis;
 import com.jfeat.am.module.set.services.advertisSchedule.AdvertisPushTimeService;
 import com.jfeat.am.module.set.services.logMessage.HistoryPlayAndNowPlayService;
@@ -22,7 +23,7 @@ public class HistoryPlayvController {
     public Result SearchNowAdvertisPlay () {
         try{
             //  按照播放的时间进行排序查询
-            List<Pushtimeadvertis> pushtimeadvertis = historyPlayAndNowPlayService.searchHistoryPlayAdvertis() ;
+            List<AdvertisPlayTime> pushtimeadvertis = historyPlayAndNowPlayService.searchHistoryPlayAdvertis() ;
             return new Result(  pushtimeadvertis , "返回数据成功" , 200 ) ;
         }catch ( Exception e ) {
             e.printStackTrace();
