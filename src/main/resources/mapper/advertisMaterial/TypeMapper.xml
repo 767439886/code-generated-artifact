@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfeat.am.module.set.mapper.advertisMaterial.TypeMapper">
+    <select id="SearchType" parameterType="String" resultType="com.jfeat.am.module.set.model.Type">
+        SELECT
+            `id`,
+            `type`,
+            `parentId`
+        FROM
+            `feng_test`.`type`
+        <where>
+            <if test="value != null and value !='' ">
+                id = #{value}
+            </if>
+        </where>
+    </select>
+    <select id="SearchParentType" resultType="com.jfeat.am.module.set.model.Type">
+        SELECT
+          `id`,
+          `type`,
+          `parentId`
+        FROM
+          `feng_test`.`type`
+        where
+          `parentId` = "0"
+    </select>
+    <select id="SearchAllType" parameterType="Map" resultType="com.jfeat.am.module.set.model.Type">
+        SELECT
+            `id`,
+            `type`,
+            `parentId`
+        FROM
+            `type`
+        <where>
+            <if test=" first != '' and first != nll ">
+                #{first} = `parentId`
+            </if>
+            <if test=" second != '' and second != null ">
+                `id` = #{second}
+            </if>
+        </where>
+    </select>
+</mapper>

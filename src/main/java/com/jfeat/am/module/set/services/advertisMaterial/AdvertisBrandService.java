@@ -2,8 +2,10 @@ package com.jfeat.am.module.set.services.advertisMaterial;
 
 import com.jfeat.am.module.set.mapper.advertisMaterial.AdvertisBrandMapper;
 import com.jfeat.am.module.set.mapper.advertisMaterial.AreaMapper;
+import com.jfeat.am.module.set.mapper.advertisMaterial.TypeMapper;
 import com.jfeat.am.module.set.model.AdvertisBrand;
 import com.jfeat.am.module.set.model.Area;
+import com.jfeat.am.module.set.model.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +20,7 @@ public class AdvertisBrandService {
     @Autowired( required = false )
     private AdvertisBrandMapper brandMapper ;
     @Autowired( required = false )
-    private AreaMapper areaMapper ;
+    private TypeMapper typeMapper ;
 
     public List<AdvertisBrand> searchAllBrand ( String search ) {
         Map<String, String> map = new HashMap<>() ;
@@ -28,28 +30,28 @@ public class AdvertisBrandService {
         }
         List<AdvertisBrand> advertisBrands = brandMapper.searchAdvertisBrand( map ) ;
         for ( int i = 0 ; i < advertisBrands.size() ; i++ ) {
-            StringBuilder cityName = new StringBuilder("") ;
+            StringBuilder typeName = new StringBuilder("") ;
             //  返回搜索出来的区域名字
-            String advertisArea = this.getAdvertisArea(advertisBrands.get(i).getCategoryId(), cityName) ;
+            String type = this.getAdvertisArea(advertisBrands.get(i).getTypeId() , typeName) ;
             //  把区域放进广告模板中
-            advertisBrands.get(i).setArea( advertisArea ) ;
+            advertisBrands.get(i).setType( type ); ;
         }
         return advertisBrands ;
     }
 
-    //  返回该模板属于的城市和区
-    public String getAdvertisArea( String parentId , StringBuilder areaName ) {
+    //  返回该模板的类型
+    public String getAdvertisArea( String parentId , StringBuilder typeName ) {
         //  判断他的父id是否为0
         if ( parentId.equals( "0" )  ) {
-            return areaName.toString() ;
+            return typeName.toString() ;
         } else {
             //  搜索出属于该id的地点
-            List<Area> areas = areaMapper.SearchArea(parentId) ;
-            //  把地点进行相加
-            StringBuilder cityName = new StringBuilder(areas.get(0).getCityName()) ;
-            areaName = cityName.append( areaName ) ;
+            List<Type> types = typeMapper.SearchType(parentId) ;
+            //  把类型进行相加
+            StringBuilder typeNameConnect = new StringBuilder(types.get(0).getType() ) ;
+            typeName = typeNameConnect.append( typeName ) ;
             //  循环调用
-            String advertisArea = this.getAdvertisArea("" + areas.get(0).getParentId(), areaName) ;
+            String advertisArea = this.getAdvertisArea("" + types.get(0).getParentId() , typeName  ) ;
             //  返回区域
             return advertisArea ;
         }
@@ -67,21 +69,18 @@ public class AdvertisBrandService {
         keyword.put("id" , id ) ;
         //  搜索出关联的品牌
         List<AdvertisBrand> advertisBrands = brandMapper.searchAdvertisBrand(keyword) ;
-
-        //  再搜索出城市和区
         Map<String, Object> map = new HashMap<>() ;
-        map.put( "area" , advertisBrands.get(0).getCategoryId() ) ;
-        //  根据id搜索出对应的区
-        List<Area> areas = areaMapper.SearchCity(map) ;
-        //  根据区的父id搜索出市
-        map.put( "area" , areas.get(0).getParentId() ) ;
-        List<Area> citys = areaMapper.SearchCity(map) ;
-
+        //  根据id搜索出对应的二级分类
+        map.put( "second" , advertisBrands.get(0).getTypeId() ) ;
+        List<Type> sconeds = typeMapper.SearchType( advertisBrands.get(0).getTypeId() ) ;
+        //  根据二级分类搜索出一级分类
+        map.put( "second" , sconeds.get(0).getParentId() ) ;
+        List<Type> firsts = typeMapper.SearchAllType(map) ;
         //  把所有数据进行封装
         map.put( "id" , advertisBrands.get(0).getId() ) ;
-        map.put( "city" , citys.get(0).getCityName() ) ;
-        map.put( "area" , areas.get(0).getCityName() ) ;
-        map.put( "advertisingName" , advertisBrands.get(0).getAdvertisingName() ) ;
+        map.put( "first" , firsts.get(0).getType() ) ;
+        map.put( "second" , sconeds.get(0).getType() ) ;
+        map.put( "brandName" , advertisBrands.get(0).getAdvertisingName() ) ;
         map.put( "format" , advertisBrands.get(0).getFormat() ) ;
         map.put( "iftranscoding" , advertisBrands.get(0).getIftranscoding() ) ;
         return map ;
@@ -93,8 +92,8 @@ public class AdvertisBrandService {
         AdvertisBrand advertisBrand = new AdvertisBrand() ;
 
         //   把数据进行封装
-        advertisBrand.setCategoryId( map.get("area") ); ;
-        advertisBrand.setAdvertisingName( map.get("advertisingName") ) ;
+        advertisBrand.setTypeId( map.get("second") ); ;
+        advertisBrand.setAdvertisingName( map.get("brandName") ) ;
         advertisBrand.setFormat( map.get("format") ); ;
         advertisBrand.setIftranscoding( map.get("iftranscoding") ) ;
         advertisBrand.setId( Integer.parseInt(map.get("id")) ) ;

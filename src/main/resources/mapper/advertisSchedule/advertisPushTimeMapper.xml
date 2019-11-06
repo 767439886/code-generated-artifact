@@ -3,15 +3,15 @@
 <mapper namespace="com.jfeat.am.module.set.mapper.advertisSchedule.AdvertisPushTimeMapper">
     <select id="searchPushtimeAdvertis" parameterType="Map" resultType="com.jfeat.am.module.set.model.Pushtimeadvertis">
         SELECT
-          p.`id`,
-          `pushAdvertisName`,
-          `startTime`,
-          `endTime`,
-          `playTime`,
-          u.name uidName
+            push.`id`,
+            pro.`name` AS pushAdvertisName ,
+            `uid`,
+            `endTime`,
+            `startTime`
         FROM
-          `pushTimeAdvertis` AS  p
-        LEFT JOIN `user` AS u ON p.uid = u.id
+            `pushTimeAdvertis` push
+        LEFT JOIN `prograMake` pro ON pro.`id` = push.`pushAdvertisId`
+        LEFT JOIN `user` AS u ON push.uid = u.id
         <where>
             <if test=" keyword != null and keyword != '' " >
                 pushAdvertisName like CONCAT( "%" , keyword , "%" ) or

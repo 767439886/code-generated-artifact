@@ -6,7 +6,7 @@
           `brandName` ,
           `id` ,
           `format` ,
-          `categoryId` ,
+          `typeId` ,
           case when iftranscoding &gt;= 1 then "已转码"
           else "未转码"
           end iftranscoding
@@ -25,14 +25,14 @@
         INSERT INTO  `advertisBrand` (
           `brandName`,
           `format`,
-          `categoryId`,
+          `typeId`,
           `iftranscoding`
         )
         VALUES
         (
-            #{advertisingName} ,
+            #{brandName} ,
             #{format} ,
-            #{categoryId} ,
+            #{second} ,
             "0"
         )
     </insert>
@@ -41,15 +41,15 @@
           `id` ,
           `brandName`,
           `format`,
-          `categoryId`,
+          `typeId`,
           `iftranscoding`
         )
         VALUES
         (
             #{id} ,
-            #{advertisingName} ,
+            #{brandName} ,
             #{format} ,
-            #{categoryId} ,
+            #{typeId} ,
             #{iftranscoding}
         )
     </insert>
